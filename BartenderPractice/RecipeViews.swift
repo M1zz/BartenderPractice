@@ -48,7 +48,7 @@ struct RecipeListView: View {
             selectedBase = base
         } label: {
             Text(title)
-                .font(.subheadline.weight(.medium))
+                .font(.body.weight(.medium))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .background(Capsule().fill(isSelected ? Color.accentColor : Color.secondary.opacity(0.15)))
@@ -68,7 +68,7 @@ struct CocktailRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(cocktail.name).font(.headline)
                 Text("\(cocktail.englishName) · \(cocktail.base.rawValue) · \(cocktail.method.rawValue)")
-                    .font(.caption)
+                    .font(.body)
                     .foregroundStyle(.secondary)
             }
         }
@@ -88,7 +88,7 @@ struct RecipeDetailView: View {
                     Text(cocktail.name).font(.title.bold())
                     Text(cocktail.englishName).foregroundStyle(.secondary)
                     Text("\(cocktail.base.rawValue) 베이스")
-                        .font(.caption)
+                        .font(.body)
                         .padding(.horizontal, 10).padding(.vertical, 4)
                         .background(Capsule().fill(Color.secondary.opacity(0.15)))
                 }
@@ -106,20 +106,20 @@ struct RecipeDetailView: View {
                 ForEach(Array(cocktail.items.enumerated()), id: \.offset) { index, item in
                     HStack {
                         Text("\(index + 1)")
-                            .font(.caption.monospacedDigit())
+                            .font(.body.monospacedDigit())
                             .foregroundStyle(.secondary)
                             .frame(width: 18)
                         VStack(alignment: .leading) {
                             Text(item.ingredient.koreanName)
                             Text(item.ingredient.rawValue)
-                                .font(.caption)
+                                .font(.body)
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
                         VStack(alignment: .trailing) {
                             Text(item.amount.rawValue).fontWeight(.medium)
                             if let note = item.note {
-                                Text(note).font(.caption).foregroundStyle(.secondary)
+                                Text(note).font(.body).foregroundStyle(.secondary)
                             }
                         }
                     }

@@ -43,6 +43,7 @@ struct ResultView: View {
                 }
             } footer: {
                 Text("재료 1개당 이름 50% + 용량 50%. 레시피에 없는 재료는 1개당 5점 감점.")
+                    .font(.body)
             }
 
             if let tip = cocktail.tip {
@@ -86,7 +87,7 @@ struct ScoreHeader: View {
                     Text("\(breakdown.total)")
                         .font(.system(size: 44, weight: .bold, design: .rounded))
                     Text("/ 100")
-                        .font(.caption)
+                        .font(.body)
                         .foregroundStyle(.secondary)
                 }
             }
@@ -96,7 +97,7 @@ struct ScoreHeader: View {
                 .font(.title3.bold())
                 .foregroundStyle(breakdown.isPassed ? Color.green : Color.red)
             Text("합격선 \(ScoreBreakdown.passLine)점")
-                .font(.caption)
+                .font(.body)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
@@ -121,17 +122,17 @@ struct CompareRow: View {
                 Text(title).font(.headline)
                 Spacer()
                 Text("\(points) / \(max)점")
-                    .font(.subheadline.monospacedDigit())
+                    .font(.body.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
             if isCorrect {
-                Text(expected).font(.subheadline)
+                Text(expected).font(.body)
             } else {
                 Text("선택: \(chosen)")
-                    .font(.subheadline)
+                    .font(.body)
                     .foregroundStyle(.red)
                 Text("정답: \(expected)")
-                    .font(.subheadline)
+                    .font(.body)
                     .foregroundStyle(.green)
             }
         }
@@ -172,7 +173,7 @@ struct IngredientCheckRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(check.ingredient.koreanName)
                 Text(detail)
-                    .font(.caption)
+                    .font(.body)
                     .foregroundStyle(.secondary)
             }
             Spacer()

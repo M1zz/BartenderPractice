@@ -113,7 +113,7 @@ struct GlassIcon: View {
         ForEach(Glass.allCases) { glass in
             VStack {
                 GlassIcon(glass: glass)
-                Text(glass.rawValue).font(.caption2)
+                Text(glass.rawValue).font(.body)
             }
         }
     }

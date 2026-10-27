@@ -51,27 +51,30 @@ struct MockExamView: View {
     }
 
     private var examBar: some View {
-        HStack {
-            Text("\(currentIndex + 1) / \(entries.count)잔")
-                .font(.subheadline.weight(.semibold))
-            Spacer()
-            HStack(spacing: 6) {
-                ForEach(Array(entries.enumerated()), id: \.element.id) { index, entry in
-                    Text(entry.cocktail.name)
-                        .font(.caption2)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(
-                            Capsule().fill(index == currentIndex ? Color.accentColor.opacity(0.2)
-                                           : entry.result != nil ? Color.green.opacity(0.15)
-                                           : Color.secondary.opacity(0.12))
-                        )
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text("\(currentIndex + 1) / \(entries.count)잔")
+                    .font(.body.weight(.semibold))
+                Spacer()
+                Label(timeString, systemImage: "timer")
+                    .font(.body.monospacedDigit().weight(.semibold))
+                    .foregroundStyle(remaining <= 60 ? Color.red : Color.primary)
+            }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    ForEach(Array(entries.enumerated()), id: \.element.id) { index, entry in
+                        Text(entry.cocktail.name)
+                            .font(.body)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(
+                                Capsule().fill(index == currentIndex ? Color.accentColor.opacity(0.2)
+                                               : entry.result != nil ? Color.green.opacity(0.15)
+                                               : Color.secondary.opacity(0.12))
+                            )
+                    }
                 }
             }
-            Spacer()
-            Label(timeString, systemImage: "timer")
-                .font(.subheadline.monospacedDigit().weight(.semibold))
-                .foregroundStyle(remaining <= 60 ? Color.red : Color.primary)
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
@@ -112,11 +115,11 @@ struct MockExamView: View {
                     ScoreHeader(breakdown: ScoreBreakdown(glass: 0, method: 0, ingredients: totalScore, garnish: 0))
                     if timedOut {
                         Label("제한시간 7분 초과 — 미완성 칵테일은 0점 처리", systemImage: "clock.badge.exclamationmark")
-                            .font(.caption)
+                            .font(.body)
                             .foregroundStyle(.red)
                     } else {
                         Text("소요시간 \(String(format: "%d:%02d", (7 * 60 - remaining) / 60, (7 * 60 - remaining) % 60))")
-                            .font(.caption)
+                            .font(.body)
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -125,6 +128,7 @@ struct MockExamView: View {
                 .listRowBackground(Color.clear)
             } footer: {
                 Text("3잔 평균 점수입니다. 실제 시험은 감독위원이 위생·동작·완성도까지 함께 평가합니다.")
+                    .font(.body)
             }
 
             ForEach(entries) { entry in

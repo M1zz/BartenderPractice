@@ -34,6 +34,7 @@ struct HomeView: View {
                     Text("실습")
                 } footer: {
                     Text("잔 → 술·재료 → 조주법 → 가니쉬 순서로 고르면 채점합니다.")
+                        .font(.body)
                 }
 
                 if !history.records.isEmpty {
@@ -55,7 +56,7 @@ struct HomeView: View {
                                         CocktailRow(cocktail: item.cocktail)
                                         Spacer()
                                         Text("평균 \(item.average)점")
-                                            .font(.caption)
+                                            .font(.body)
                                             .foregroundStyle(item.average >= ScoreBreakdown.passLine ? Color.green : Color.red)
                                     }
                                 }
@@ -70,13 +71,13 @@ struct HomeView: View {
                                     VStack(alignment: .leading, spacing: 2) {
                                         Text(cocktail.name)
                                         Text(record.date, format: .dateTime.month().day().hour().minute())
-                                            .font(.caption)
+                                            .font(.body)
                                             .foregroundStyle(.secondary)
                                     }
                                     Spacer()
                                     if record.mode == .exam {
                                         Text("모의고사")
-                                            .font(.caption2)
+                                            .font(.body)
                                             .padding(.horizontal, 6).padding(.vertical, 2)
                                             .background(Capsule().fill(Color.red.opacity(0.15)))
                                     }
@@ -100,6 +101,7 @@ struct HomeView: View {
                     }
                 } footer: {
                     Text("2025년 NCS 신기준 조주기능사 실기 표준 레시피를 기준으로 합니다. 시험 전 반드시 한국산업인력공단 공개문제의 최신 레시피를 확인하세요.")
+                        .font(.body)
                 }
             }
             .navigationTitle("조주기능사 실기 연습")
@@ -129,7 +131,7 @@ struct ModeRow: View {
                 .background(RoundedRectangle(cornerRadius: 10).fill(color))
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.headline).foregroundStyle(.primary)
-                Text(subtitle).font(.caption).foregroundStyle(.secondary)
+                Text(subtitle).font(.body).foregroundStyle(.secondary)
             }
             Spacer()
         }
@@ -147,7 +149,7 @@ struct StatTile: View {
             Text(value)
                 .font(.title3.bold().monospacedDigit())
             Text(title)
-                .font(.caption)
+                .font(.body)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)

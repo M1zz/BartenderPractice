@@ -94,12 +94,12 @@ struct PracticeFlowView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline) {
                 Text("주문")
-                    .font(.caption.weight(.semibold))
+                    .font(.body.weight(.semibold))
                     .foregroundStyle(.secondary)
                 Text(cocktail.name)
                     .font(.title2.bold())
                 Text(cocktail.englishName)
-                    .font(.subheadline)
+                    .font(.body)
                     .foregroundStyle(.secondary)
                 Spacer()
             }
@@ -111,7 +111,7 @@ struct PracticeFlowView: View {
                 }
             }
             Text("\(step.rawValue + 1)/\(Step.allCases.count)  \(step.title)")
-                .font(.subheadline.weight(.medium))
+                .font(.body.weight(.medium))
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
@@ -205,7 +205,7 @@ struct GlassPickerView: View {
                             GlassIcon(glass: glass, size: 56)
                                 .foregroundStyle(isSelected ? Color.accentColor : Color.primary)
                             Text(glass.koreanName)
-                                .font(.caption)
+                                .font(.body)
                                 .multilineTextAlignment(.center)
                                 .foregroundStyle(.primary)
                         }
@@ -280,7 +280,7 @@ struct IngredientPickerView: View {
                                     VStack(alignment: .leading) {
                                         Text(ingredient.koreanName)
                                         Text(ingredient.rawValue)
-                                            .font(.caption)
+                                            .font(.body)
                                             .foregroundStyle(.secondary)
                                     }
                                     Spacer()
@@ -310,7 +310,7 @@ struct IngredientPickerView: View {
             VStack(alignment: .leading) {
                 Text(ingredient.koreanName)
                 Text(ingredient.rawValue)
-                    .font(.caption)
+                    .font(.body)
                     .foregroundStyle(.secondary)
             }
             Spacer()
@@ -344,8 +344,8 @@ struct MethodPickerView: View {
                         .padding(.top, 2)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(method.koreanName).font(.headline)
-                        Text(method.rawValue).font(.caption).foregroundStyle(.secondary)
-                        Text(method.detail).font(.subheadline).foregroundStyle(.secondary)
+                        Text(method.rawValue).font(.body).foregroundStyle(.secondary)
+                        Text(method.detail).font(.body).foregroundStyle(.secondary)
                     }
                     Spacer()
                 }

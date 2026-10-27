@@ -8,6 +8,8 @@ struct BartenderPracticeApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(history)
+                // List section headers default to footnote size; keep them at headline or larger.
+                .headerProminence(.increased)
         }
     }
 }
