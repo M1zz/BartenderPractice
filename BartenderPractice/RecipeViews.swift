@@ -32,7 +32,7 @@ struct RecipeListView: View {
 
             Section("\(filtered.count)종") {
                 ForEach(filtered) { cocktail in
-                    NavigationLink(value: cocktail) {
+                    NavigationLink(value: Route.recipe(cocktail)) {
                         CocktailRow(cocktail: cocktail)
                     }
                 }
@@ -40,9 +40,6 @@ struct RecipeListView: View {
         }
         .searchable(text: $searchText, prompt: "칵테일 또는 재료 검색")
         .navigationTitle("레시피 40")
-        .navigationDestination(for: Cocktail.self) { cocktail in
-            RecipeDetailView(cocktail: cocktail)
-        }
     }
 
     private func baseChip(_ base: Base?, title: String) -> some View {
@@ -141,9 +138,7 @@ struct RecipeDetailView: View {
 
             if showsPracticeButton {
                 Section {
-                    NavigationLink {
-                        PracticeFlowView(cocktail: cocktail)
-                    } label: {
+                    NavigationLink(value: Route.practice(cocktail)) {
                         Label("이 칵테일로 실습하기", systemImage: "play.fill")
                             .fontWeight(.semibold)
                     }
@@ -158,6 +153,7 @@ struct RecipeDetailView: View {
 #Preview {
     NavigationStack {
         RecipeListView()
+            .navigationDestination(for: Route.self) { $0.destination }
             .environmentObject(HistoryStore())
     }
 }

@@ -39,8 +39,15 @@ struct PracticeFlowView: View {
         }
         .navigationTitle(examMode ? "모의고사" : "실습")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(!examMode && result == nil)
         .toolbar {
-            if !examMode {
+            if !examMode && result == nil {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: goBack) {
+                        Label(step == .glass ? "나가기" : "이전", systemImage: "chevron.left")
+                            .labelStyle(.titleAndIcon)
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showRecipeHint = true
@@ -112,9 +119,7 @@ struct PracticeFlowView: View {
 
     private var footer: some View {
         HStack {
-            Button {
-                withAnimation { step = Step(rawValue: step.rawValue - 1) ?? .glass }
-            } label: {
+            Button(action: goBack) {
                 Label("이전", systemImage: "chevron.left")
             }
             .disabled(step == .glass)
@@ -163,6 +168,15 @@ struct PracticeFlowView: View {
             history.add(cocktail: cocktail, score: scored.breakdown, mode: .practice)
         }
         onComplete(attempt, scored)
+    }
+
+    /// Steps back one stage; on the first stage leaves the practice screen.
+    private func goBack() {
+        if let previous = Step(rawValue: step.rawValue - 1) {
+            withAnimation { step = previous }
+        } else if !examMode {
+            dismiss()
+        }
     }
 
     private func reset() {
@@ -222,6 +236,25 @@ struct IngredientPickerView: View {
 
     var body: some View {
         List {
+            Section {
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundStyle(.secondary)
+                    TextField("재료 검색", text: $searchText)
+                        .autocorrectionDisabled()
+                    if !searchText.isEmpty {
+                        Button {
+                            searchText = ""
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(.secondary)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("검색어 지우기")
+                    }
+                }
+            }
+
             if !attempt.items.isEmpty {
                 Section("선택한 재료 (\(attempt.items.count))") {
                     ForEach(attempt.items, id: \.ingredient) { item in
@@ -229,9 +262,6 @@ struct IngredientPickerView: View {
                     }
                     .onDelete { offsets in
                         attempt.items.remove(atOffsets: offsets)
-                    }
-                    .onMove { from, to in
-                        attempt.items.move(fromOffsets: from, toOffset: to)
                     }
                 }
             }
@@ -263,8 +293,7 @@ struct IngredientPickerView: View {
                 }
             }
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "재료 검색")
-        .toolbar { EditButton() }
+        .scrollDismissesKeyboard(.immediately)
     }
 
     private func filtered(in category: IngredientCategory) -> [Ingredient] {

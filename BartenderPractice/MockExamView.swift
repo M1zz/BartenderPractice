@@ -130,10 +130,9 @@ struct MockExamView: View {
             ForEach(entries) { entry in
                 Section(entry.cocktail.name) {
                     if let result = entry.result {
-                        NavigationLink {
-                            ResultView(cocktail: entry.cocktail, attempt: entry.attempt, result: result,
-                                       onRetry: {}, onDone: {}, hidesBackButton: false)
-                        } label: {
+                        NavigationLink(value: Route.examResult(cocktail: entry.cocktail,
+                                                               attempt: entry.attempt,
+                                                               result: result)) {
                             HStack {
                                 Text(entry.cocktail.englishName)
                                 Spacer()
@@ -179,6 +178,7 @@ struct MockExamView: View {
 #Preview {
     NavigationStack {
         MockExamView()
+            .navigationDestination(for: Route.self) { $0.destination }
             .environmentObject(HistoryStore())
     }
 }

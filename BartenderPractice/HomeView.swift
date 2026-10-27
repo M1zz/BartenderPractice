@@ -2,32 +2,30 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var history: HistoryStore
-    @State private var randomCocktail: Cocktail?
+    @State private var path: [Route] = []
     @State private var showClearConfirm = false
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section {
                     Button {
-                        randomCocktail = CocktailData.all.randomElement()
+                        if let cocktail = CocktailData.all.randomElement() {
+                            path.append(.practice(cocktail))
+                        }
                     } label: {
                         ModeRow(icon: "shuffle", color: .orange,
                                 title: "랜덤 실습",
                                 subtitle: "40종 중 한 잔을 무작위로 주문받습니다")
                     }
 
-                    NavigationLink {
-                        RecipeListView()
-                    } label: {
+                    NavigationLink(value: Route.recipeList) {
                         ModeRow(icon: "list.bullet.rectangle", color: .blue,
                                 title: "칵테일 골라서 실습",
                                 subtitle: "레시피를 보고 원하는 칵테일로 연습")
                     }
 
-                    NavigationLink {
-                        MockExamView()
-                    } label: {
+                    NavigationLink(value: Route.mockExam) {
                         ModeRow(icon: "timer", color: .red,
                                 title: "모의고사",
                                 subtitle: "실제 시험처럼 3잔 · 7분")
@@ -52,9 +50,7 @@ struct HomeView: View {
                     if !weak.isEmpty {
                         Section("보강이 필요한 칵테일") {
                             ForEach(weak, id: \.cocktail.id) { item in
-                                NavigationLink {
-                                    PracticeFlowView(cocktail: item.cocktail)
-                                } label: {
+                                NavigationLink(value: Route.practice(item.cocktail)) {
                                     HStack {
                                         CocktailRow(cocktail: item.cocktail)
                                         Spacer()
@@ -99,9 +95,7 @@ struct HomeView: View {
                 }
 
                 Section {
-                    NavigationLink {
-                        RecipeListView()
-                    } label: {
+                    NavigationLink(value: Route.recipeList) {
                         Label("표준 레시피 40종 보기", systemImage: "book")
                     }
                 } footer: {
@@ -109,8 +103,8 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("조주기능사 실기 연습")
-            .navigationDestination(item: $randomCocktail) { cocktail in
-                PracticeFlowView(cocktail: cocktail)
+            .navigationDestination(for: Route.self) { route in
+                route.destination
             }
             .confirmationDialog("모든 연습 기록을 삭제할까요?", isPresented: $showClearConfirm, titleVisibility: .visible) {
                 Button("삭제", role: .destructive) { history.clear() }
