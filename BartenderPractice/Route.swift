@@ -7,6 +7,7 @@ enum Route: Hashable {
     case recipe(Cocktail)
     case practice(Cocktail)
     case mockExam
+    case settings
     case examResult(cocktail: Cocktail, attempt: Attempt, result: ScoreResult)
 
     @ViewBuilder
@@ -20,6 +21,8 @@ enum Route: Hashable {
             PracticeFlowView(cocktail: cocktail)
         case .mockExam:
             MockExamView()
+        case .settings:
+            SettingsView()
         case .examResult(let cocktail, let attempt, let result):
             ResultView(cocktail: cocktail, attempt: attempt, result: result,
                        onRetry: {}, onDone: {}, hidesBackButton: false)

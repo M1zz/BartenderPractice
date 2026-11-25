@@ -105,6 +105,18 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("조주기능사 실기 연습")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(value: Route.settings) {
+                        Image(systemName: "gearshape")
+                    }
+                    .accessibilityLabel("설정")
+                }
+            }
+            .onReceive(ShortcutInbox.shared.$pending.compactMap { $0 }) { route in
+                path = [route]
+                ShortcutInbox.shared.pending = nil
+            }
             .navigationDestination(for: Route.self) { route in
                 route.destination
             }

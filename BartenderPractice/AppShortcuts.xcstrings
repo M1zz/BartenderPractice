@@ -1,0 +1,46 @@
+{
+  "sourceLanguage": "ko",
+  "strings": {
+    "${applicationName}에서 랜덤 실습": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "${applicationName}에서 랜덤 실습"
+          }
+        }
+      }
+    },
+    "${applicationName} 랜덤 실습 시작": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "${applicationName} 랜덤 실습 시작"
+          }
+        }
+      }
+    },
+    "${applicationName}에서 모의고사": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "${applicationName}에서 모의고사"
+          }
+        }
+      }
+    },
+    "${applicationName} 모의고사 시작": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "${applicationName} 모의고사 시작"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
