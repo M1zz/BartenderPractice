@@ -113,6 +113,11 @@ struct HomeView: View {
                     .accessibilityLabel("설정")
                 }
             }
+            #if DEBUG
+            .task {
+                if let scene = ScreenshotScene.prepare(history: history) { path = scene }
+            }
+            #endif
             .onReceive(ShortcutInbox.shared.$pending.compactMap { $0 }) { route in
                 path = [route]
                 ShortcutInbox.shared.pending = nil
