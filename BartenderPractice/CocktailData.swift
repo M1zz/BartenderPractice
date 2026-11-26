@@ -1,6 +1,8 @@
 import Foundation
 
 /// 2025 NCS 기준 조주기능사 실기 표준 레시피 40종.
+/// 2026-11-27 (사)한국베버리지마스터협회 "실기40칵테일(2025)" 의 재료 · 용량 · 기법 · 글라스 · 가니쉬와 대조했다
+/// (사진 · 설명 글은 무단 전재 금지라 가져오지 않는다). 협회 쪽 니그로니 기법 '블렌드' 는 오기로 보고 빌드를 둔다.
 /// Amounts follow the official oz notation. 1 oz = 30 mL.
 enum CocktailData {
 
@@ -152,7 +154,7 @@ enum CocktailData {
                          .init(ingredient: .tripleSec, amount: .halfOz),
                          .init(ingredient: .sweetSourMix, amount: .oneHalfOz),
                          .init(ingredient: .cola, amount: .fill)],
-                 garnish: .limeOrLemonWedge),
+                 garnish: .lemonWedge),
 
         // MARK: Rum base
         Cocktail(id: "daiquiri", name: "다이키리", englishName: "Daiquiri", base: .rum,
@@ -175,7 +177,7 @@ enum CocktailData {
                  items: [.init(ingredient: .lightRum, amount: .oneHalfOz),
                          .init(ingredient: .limeJuice, amount: .halfOz),
                          .init(ingredient: .cola, amount: .fill)],
-                 garnish: .limeOrLemonWedge),
+                 garnish: .lemonWedge),
 
         Cocktail(id: "mai-tai", name: "마이 타이", englishName: "Mai-Tai", base: .rum,
                  glass: .footedPilsner, method: .blend,
