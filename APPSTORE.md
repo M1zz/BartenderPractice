@@ -76,6 +76,32 @@ https://m1zz.github.io/BartenderPractice/
 <!-- 앱 심사 정보 ▸ 메모 칸에 그대로 올라간다 (영어로, 4000자까지).
      구매해야만 보이는 인앱(올리기 · 졸업가 등)이 있으면 찾는 길을 순서대로 적는다 — 없으면 2.1(b). -->
 
+1. Screen recording (physical device)
+https://m1zz.github.io/BartenderPractice/review/demo.mp4
+Recorded on an iPhone 14 Pro Max running iOS 27.2.1. It starts on the Home Screen, launches the app, and shows the full flow: choosing a cocktail and practicing it step by step, scoring, random practice with the recipe hint, a full 3-drink mock exam, practice history, the recipe library, and Settings.
+The app has no account registration or login, no user-generated content, and no paid content or in-app purchases, so none of these appear in the recording.
+
+2. Purpose and target audience
+The app helps people preparing for the Korean national Craftsman Bartender practical exam (조주기능사 실기) memorize the 40 standard cocktail recipes. In the exam, candidates must make cocktails from memory with the correct glass, ingredients and amounts, method, and garnish. Reading a recipe list is passive and easy to forget, so the app makes the user actively choose each element and scores the answer out of 100, showing exactly what was wrong next to the correct recipe. It also tracks average scores and highlights the cocktails the user is weakest at. The audience is exam candidates, bartending students, and home bartenders. The app is in Korean.
+
+3. How to use the main features
+No login, setup, or sample files are needed. Everything works immediately after launch, offline.
+Random practice: tap 랜덤 실습 on the home screen. A random cocktail is ordered. Choose the glass, then the ingredients and their amounts, then the method, then the garnish, and tap 채점하기 to see the score. The lightbulb button at the top shows the recipe as a hint.
+Practice a chosen cocktail: tap 칵테일 골라서 실습, pick a cocktail, and tap 이 칵테일로 실습하기.
+Mock exam: tap 모의고사. Three random cocktails must be made within 7 minutes, like the real exam, followed by a summary.
+Recipe library: tap 표준 레시피 40종 보기 to browse all 40 recipes by base spirit.
+History: after practicing, the home screen shows average score, pass rate, recent attempts, and the weakest cocktails.
+Settings (gear icon): roadmap, feedback, Siri and Shortcuts, privacy policy, and support.
+
+4. External services
+None. The app makes no network requests for its core functionality. It uses no data providers, authentication services, payment processors, analytics, ads, or AI services. All recipes are bundled in the app, and practice history is stored only on the device.
+
+5. Regional differences
+None. The app works the same in all regions. Its content is about a Korean national certification exam and is written in Korean.
+
+6. Regulated industry or third-party material
+The app does not operate in a regulated industry. It is a study aid and does not sell or deliver alcohol. The recipes are the publicly released standard recipes for the Korean national Craftsman Bartender exam (2025 NCS standard). The app is not affiliated with the exam authority (HRD Korea) and tells users to check the latest official recipes before the exam. All app text, illustrations, and icons are original.
+
 ## 연령 등급
 
 <!-- 내용 문항이 전부 '해당 없음' 인 앱이면 아래 줄의 주석을 풀어라.
