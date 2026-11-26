@@ -94,7 +94,10 @@ History: after practicing, the home screen shows average score, pass rate, recen
 Settings (gear icon): roadmap, feedback, Siri and Shortcuts, privacy policy, and support.
 
 4. External services
-None. The app makes no network requests for its core functionality. It uses no data providers, authentication services, payment processors, analytics, ads, or AI services. All recipes are bundled in the app, and practice history is stored only on the device.
+The core functionality (practice, scoring, mock exam, recipes, history) needs no external service and works offline. All recipes are bundled in the app, and practice history is stored only on the device.
+Apple CloudKit (iCloud public database): used only for optional in-app feedback that the user writes and sends from Settings, and for anonymous usage and diagnostic counts. This matches the app's privacy label.
+GitHub (raw.githubusercontent.com): the app downloads a small static JSON file about the developer's other apps and announcements. No user data is sent.
+The app uses no third-party SDKs, authentication services, payment processors, ads, or AI services.
 
 5. Regional differences
 None. The app works the same in all regions. Its content is about a Korean national certification exam and is written in Korean.
