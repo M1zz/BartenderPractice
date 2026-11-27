@@ -1,4 +1,5 @@
 import SwiftUI
+import LeeoKit
 
 /// Glass → Ingredients → Method → Garnish → Score.
 struct PracticeFlowView: View {
@@ -164,6 +165,7 @@ struct PracticeFlowView: View {
     private func submit() {
         let scored = Scorer.score(attempt, against: cocktail)
         result = scored
+        LeeoAnalyticsCenter.track(.custom(name: "cocktail_scored", parameters: [:]))
         if !examMode {
             history.add(cocktail: cocktail, score: scored.breakdown, mode: .practice)
         }
